@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebMaker — Local Business Websites That Actually Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --bg2: #0f0f0f;
+  --bg3: #161616;
+  --border: #1e1e1e;
+  --muted: #555;
+  --text: #d8d8d8;
+  --white: #f5f5f5;
+  --accent: #7fff6e;
+  --accent2: #5ce04d;
+  --accent-dim: rgba(127,255,110,0.08);
+  --accent-border: rgba(127,255,110,0.2);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;font-size:16px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav {
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(8,8,8,0.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-logo {
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+  color:var(--white);letter-spacing:-.02em;
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta {
+  background:var(--accent);color:#080808!important;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.5rem 1.2rem;border-radius:4px;transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* HERO */
+#hero {
+  min-height:92vh;display:flex;align-items:center;
+  padding:8vh 5vw 6vh;
+  position:relative;overflow:hidden;
+}
+.hero-grid-bg {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(127,255,110,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,255,110,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-glow {
+  position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(127,255,110,0.06) 0%, transparent 65%);
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;max-width:760px}
+.hero-badge {
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--accent-dim);border:1px solid var(--accent-border);
+  border-radius:100px;padding:.3rem .9rem .3rem .5rem;
+  font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:2rem;
+  animation:fadeUp .5s ease both;
+}
+.hero-badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.8s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+h1 {
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.8rem,6.5vw,5.2rem);
+  line-height:.95;letter-spacing:-.03em;
+  color:var(--white);margin-bottom:1.4rem;
+  animation:fadeUp .5s .1s ease both;
+}
+h1 .accent{color:var(--accent);font-style:italic}
+.hero-desc{
+  font-size:1.08rem;font-weight:300;color:var(--muted);
+  max-width:500px;margin-bottom:2.5rem;line-height:1.75;
+  animation:fadeUp .5s .2s ease both;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:1rem;animation:fadeUp .5s .3s ease both}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--accent);color:#080808;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.04em;
+  padding:.85rem 2rem;border-radius:6px;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 0 0 0 rgba(127,255,110,0);
+}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(127,255,110,0.2)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--border);color:var(--text);
+  font-size:.9rem;padding:.85rem 1.8rem;border-radius:6px;
+  transition:border-color .2s,color .2s,transform .2s;
+}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;flex-wrap:wrap;gap:3rem;margin-top:4rem;padding-top:2.5rem;
+  border-top:1px solid var(--border);
+  animation:fadeUp .5s .4s ease both;
+}
+.stat-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2.4rem;color:var(--white);letter-spacing:-.03em;line-height:1;
+}
+.stat-num span{color:var(--accent)}
+.stat-lbl{font-size:.78rem;color:var(--muted);margin-top:.2rem;text-transform:uppercase;letter-spacing:.06em}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* TRUST BAR */
+.trust-bar{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg2);
+  padding:1rem 5vw;
+  display:flex;align-items:center;justify-content:center;
+  gap:2.5rem;flex-wrap:wrap;
+}
+.trust-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.trust-icon{font-size:1rem}
+.trust-divider{width:1px;height:20px;background:var(--border)}
+
+/* SECTION COMMON */
+section{padding:6rem 5vw}
+.section-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1rem;
+}
+.section-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+h2{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:var(--white);letter-spacing:-.02em;line-height:1.05;
+  margin-bottom:1rem;
+}
+h2 .a{color:var(--accent)}
+.section-desc{font-size:1rem;color:var(--muted);font-weight:300;max-width:520px;line-height:1.75}
+
+/* PORTFOLIO */
+#portfolio{background:var(--bg2)}
+.portfolio-header{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:3.5rem}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:2px}
+.project-card{
+  position:relative;overflow:hidden;background:var(--bg3);
+  border:1px solid var(--border);
+  transition:border-color .3s,transform .3s;
+  border-radius:2px;
+}
+.project-card:hover{border-color:var(--accent-border);transform:translateY(-4px)}
+.project-preview{
+  height:340px;position:relative;overflow:hidden;
+}
+.project-preview iframe{
+  width:1280px;height:900px;
+  transform:scale(0.375);
+  transform-origin:top left;
+  pointer-events:none;border:none;
+  display:block;
+}
+.project-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, transparent 50%, rgba(8,8,8,0.95) 100%);
+  pointer-events:none;
+}
+.project-info{padding:1.5rem 1.8rem 1.8rem}
+.project-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem}
+.ptag{
+  font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);
+  padding:.2rem .6rem;border-radius:100px;
+}
+.project-name{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;
+  color:var(--white);margin-bottom:.4rem;letter-spacing:-.01em;
+}
+.project-desc{font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.project-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  transition:gap .2s;
+}
+.project-link:hover{gap:.7rem}
+.project-badge{
+  position:absolute;top:1rem;left:1rem;z-index:2;
+  background:rgba(8,8,8,0.85);backdrop-filter:blur(8px);
+  border:1px solid var(--accent-border);
+  padding:.3rem .8rem;border-radius:100px;
+  font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+}
+
+/* PRICING */
+#pricing{background:var(--bg)}
+.pricing-header{text-align:center;max-width:600px;margin:0 auto 4rem}
+.pricing-header .section-tag{justify-content:center}
+.pricing-header .section-tag::before{display:none}
+.pricing-note{
+  margin-top:.8rem;font-size:.85rem;color:var(--muted);
+}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;max-width:1000px;margin:0 auto}
+.plan{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:2.2rem 2rem;position:relative;
+  transition:border-color .3s,transform .3s;
+}
+.plan:hover{border-color:var(--accent-border);transform:translateY(-4px)}
+.plan.featured{
+  background:var(--bg3);border-color:var(--accent);
+  transform:scale(1.02);
+}
+.plan.featured:hover{transform:scale(1.02) translateY(-4px)}
+.plan-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#080808;
+  font-family:'Syne',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:.25rem .8rem;border-radius:100px;white-space:nowrap;
+}
+.plan-name{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:.8rem;
+}
+.plan-price{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:3rem;color:var(--white);letter-spacing:-.04em;line-height:1;
+  margin-bottom:.2rem;
+}
+.plan-price span{font-size:1.4rem;color:var(--muted);font-weight:400}
+.plan-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.8rem}
+.plan-divider{height:1px;background:var(--border);margin-bottom:1.8rem}
+.plan-features{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+.pf{display:flex;gap:.65rem;align-items:flex-start;font-size:.87rem;color:var(--text)}
+.pf-check{color:var(--accent);font-size:.9rem;flex-shrink:0;margin-top:.05rem}
+.pf-x{color:var(--muted);font-size:.9rem;flex-shrink:0;margin-top:.05rem}
+.pf.dim{color:var(--muted)}
+.plan-btn{
+  display:block;text-align:center;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.8rem 1.5rem;border-radius:5px;
+  transition:all .2s;
+}
+.plan-btn.outline{border:1px solid var(--border);color:var(--text)}
+.plan-btn.outline:hover{border-color:var(--accent);color:var(--accent)}
+.plan-btn.filled{background:var(--accent);color:#080808}
+.plan-btn.filled:hover{background:var(--accent2);box-shadow:0 6px 20px rgba(127,255,110,0.2)}
+.pricing-footer{text-align:center;margin-top:2.5rem;font-size:.85rem;color:var(--muted)}
+.pricing-footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* WHY ME */
+#why{background:var(--bg2)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-left .section-tag{margin-bottom:.8rem}
+.why-list{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.why-item{display:flex;gap:1rem;align-items:flex-start}
+.why-icon{
+  width:40px;height:40px;flex-shrink:0;
+  background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.why-item h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  color:var(--white);margin-bottom:.25rem;letter-spacing:-.01em;
+}
+.why-item p{font-size:.85rem;color:var(--muted);line-height:1.65}
+.why-visual{
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+  padding:2rem;display:flex;flex-direction:column;gap:1px;
+}
+.wv-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.2rem;background:var(--bg2);
+  border-radius:4px;margin-bottom:1px;
+}
+.wv-label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.wv-val{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--accent)}
+.wv-bar-wrap{flex:1;margin:0 1.5rem;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.wv-bar{height:100%;background:var(--accent);border-radius:2px;transition:width 1.5s ease}
+.wv-title{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:.8rem;padding:0 .2rem;
+}
+
+/* PROCESS */
+#process{background:var(--bg)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3rem;position:relative}
+.process-steps::before{
+  content:'';position:absolute;top:20px;left:0;right:0;
+  height:1px;background:var(--border);
+}
+.pstep{padding:0 1.5rem 1.5rem 0;position:relative}
+.pstep-num{
+  width:42px;height:42px;
+  background:var(--bg2);border:1px solid var(--accent);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;color:var(--accent);
+  margin-bottom:1.2rem;position:relative;z-index:1;
+}
+.pstep h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  color:var(--white);margin-bottom:.4rem;
+}
+.pstep p{font-size:.82rem;color:var(--muted);line-height:1.65}
+
+/* CTA */
+#cta{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  text-align:center;padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+  width:700px;height:400px;
+  background:radial-gradient(ellipse, rgba(127,255,110,0.06) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cta-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.cta-tag::before,.cta-tag::after{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+#cta h2{max-width:700px;margin:0 auto 1rem}
+#cta p{color:var(--muted);max-width:480px;margin:0 auto 2.5rem;font-weight:300}
+.cta-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.cta-contact{font-size:.82rem;color:var(--muted)}
+.cta-contact a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--white)}
+.footer-logo span{color:var(--accent)}
+.footer-copy{font-size:.78rem;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.78rem;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 1.2rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.2rem}
+  h1{font-size:2.4rem}
+  .portfolio-header{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .plan.featured{transform:none}
+  .why-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr;gap:2rem}
+  .process-steps::before{display:none}
+  .hero-stats{gap:1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Web<span>Maker</span></div>
+  <div class="nav-links">
+    <a href="#portfolio">Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#why">About</a>
+    <a href="#process">Process</a>
+    <a href="#cta" class="nav-cta">Get a Free Quote →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Available for new projects
+    </div>
+    <h1>Websites that<br>win you more<br><span class="accent">customers.</span></h1>
+    <p class="hero-desc">I build clean, fast, professional websites for local businesses — the kind that actually show up on Google and turn visitors into paying clients.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Get a Free Quote →</a>
+      <a href="#portfolio" class="btn-secondary">See My Work ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2<span>+</span></div>
+        <div class="stat-lbl">Sites Delivered</div>
+      </div>
+      <div>
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-lbl">Client Satisfaction</div>
+      </div>
+      <div>
+        <div class="stat-num">7<span>d</span></div>
+        <div class="stat-lbl">Avg Turnaround</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">✅</span> Mobile Optimized</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">⚡</span> Fast Loading</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">🔍</span> SEO Friendly</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">💬</span> Free Consultation</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">🔒</span> No Hidden Fees</div>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <div class="section-tag">Recent Work</div>
+      <h2>Sites I've <span class="a">Built</span></h2>
+    </div>
+    <p class="section-desc">Every site is custom-designed to match the business's brand and built to convert visitors into leads and customers.</p>
+  </div>
+
+  <div class="portfolio-grid reveal">
+    <!-- PROJECT 1: truGrade Concrete -->
+    <div class="project-card">
+      <div class="project-badge">Live Demo</div>
+      <div class="project-preview">
+        <iframe src="trugrade_concrete_website.html" title="truGrade Concrete" scrolling="no"></iframe>
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="ptag">Contractor</span>
+          <span class="ptag">Lead Gen</span>
+          <span class="ptag">Local SEO</span>
+        </div>
+        <div class="project-name">truGrade Concrete</div>
+        <p class="project-desc">A high-converting site for a concrete contractor in Fayette County, PA. Designed to capture local leads with a quote request form, service breakdowns, and a project gallery.</p>
+        <a href="trugrade_concrete_website.html" target="_blank" class="project-link">View Full Site →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: Man Cave Barbershop -->
+    <div class="project-card">
+      <div class="project-badge">Live Demo</div>
+      <div class="project-preview">
+        <iframe src="mancave_barbershop_demo.html" title="Man Cave Barbershop" scrolling="no"></iframe>
+        <div class="project-overlay"></div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="ptag">Barbershop</span>
+          <span class="ptag">Service Menu</span>
+          <span class="ptag">Local Business</span>
+        </div>
+        <div class="project-name">The Man Cave Barbershop</div>
+        <p class="project-desc">A premium-feel website for a walk-in barbershop in Chester, WV. Features services, pricing, real customer reviews, and a strong call-to-action that drives phone calls.</p>
+        <a href="mancave_barbershop_demo.html" target="_blank" class="project-link">View Full Site →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-header reveal">
+    <div class="section-tag">Transparent Pricing</div>
+    <h2>Simple Packages,<br><span class="a">No Surprises</span></h2>
+    <p class="pricing-note">Every package includes hosting setup help, mobile optimization, and a site you actually own. One-time payment — no monthly subscriptions.</p>
+  </div>
+
+  <div class="pricing-grid reveal">
+    <!-- STARTER -->
+    <div class="plan">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price"><span>$</span>299</div>
+      <div class="plan-sub">One-time · delivered in 5 days</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="pf"><span class="pf-check">✓</span> 1-page website (all sections)</div>
+        <div class="pf"><span class="pf-check">✓</span> Mobile-friendly design</div>
+        <div class="pf"><span class="pf-check">✓</span> Contact form or click-to-call</div>
+        <div class="pf"><span class="pf-check">✓</span> Google Maps embed</div>
+        <div class="pf"><span class="pf-check">✓</span> Basic SEO setup</div>
+        <div class="pf dim"><span class="pf-x">✗</span> Multiple pages</div>
+        <div class="pf dim"><span class="pf-x">✗</span> Blog or gallery</div>
+        <div class="pf dim"><span class="pf-x">✗</span> Revisions after delivery</div>
+      </div>
+      <a href="#cta" class="plan-btn outline">Get Started →</a>
+    </div>
+
+    <!-- BUSINESS (FEATURED) -->
+    <div class="plan featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">Business</div>
+      <div class="plan-price"><span>$</span>599</div>
+      <div class="plan-sub">One-time · delivered in 7 days</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="pf"><span class="pf-check">✓</span> Up to 5 pages</div>
+        <div class="pf"><span class="pf-check">✓</span> Custom design (matched to brand)</div>
+        <div class="pf"><span class="pf-check">✓</span> Contact form + call button</div>
+        <div class="pf"><span class="pf-check">✓</span> Photo gallery or service menu</div>
+        <div class="pf"><span class="pf-check">✓</span> Google Reviews integration</div>
+        <div class="pf"><span class="pf-check">✓</span> Full SEO optimization</div>
+        <div class="pf"><span class="pf-check">✓</span> 2 rounds of revisions</div>
+        <div class="pf dim"><span class="pf-x">✗</span> Ongoing monthly edits</div>
+      </div>
+      <a href="#cta" class="plan-btn filled">Get Started →</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="plan">
+      <div class="plan-name">Premium</div>
+      <div class="plan-price"><span>$</span>999</div>
+      <div class="plan-sub">One-time · delivered in 10–14 days</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="pf"><span class="pf-check">✓</span> Unlimited pages</div>
+        <div class="pf"><span class="pf-check">✓</span> Premium custom design</div>
+        <div class="pf"><span class="pf-check">✓</span> Online booking integration</div>
+        <div class="pf"><span class="pf-check">✓</span> Blog or news section</div>
+        <div class="pf"><span class="pf-check">✓</span> Advanced SEO + sitemap</div>
+        <div class="pf"><span class="pf-check">✓</span> Google Analytics setup</div>
+        <div class="pf"><span class="pf-check">✓</span> 3 rounds of revisions</div>
+        <div class="pf"><span class="pf-check">✓</span> 30 days of support</div>
+      </div>
+      <a href="#cta" class="plan-btn outline">Get Started →</a>
+    </div>
+  </div>
+
+  <div class="pricing-footer reveal">
+    Not sure which plan fits? <a href="#cta">Let's talk — it's free and zero pressure.</a>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section id="why">
+  <div class="why-grid">
+    <div class="why-left reveal">
+      <div class="section-tag">Why Work With Me</div>
+      <h2>Built for<br>local businesses<br><span class="a">like yours</span></h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-icon">🎯</div>
+          <div>
+            <h4>Built to Convert, Not Just Look Pretty</h4>
+            <p>Every element is placed strategically — headlines, buttons, forms — to turn visitors into calls and leads.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📱</div>
+          <div>
+            <h4>Mobile-First Always</h4>
+            <p>Over 60% of local searches happen on phones. Your site will look great and load fast on every device.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🤝</div>
+          <div>
+            <h4>Easy to Work With</h4>
+            <p>No confusing tech talk. I keep you updated, explain everything clearly, and actually deliver on time.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">💰</div>
+          <div>
+            <h4>One Price, No Surprises</h4>
+            <p>You know the price before we start. No hidden fees, no upsells, no monthly traps. Just fair, honest work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual reveal">
+      <div class="wv-title">What you get vs. the competition</div>
+      <div class="wv-row">
+        <div class="wv-label">Design Quality</div>
+        <div class="wv-bar-wrap"><div class="wv-bar" style="width:95%"></div></div>
+        <div class="wv-val">95%</div>
+      </div>
+      <div class="wv-row">
+        <div class="wv-label">Speed</div>
+        <div class="wv-bar-wrap"><div class="wv-bar" style="width:90%"></div></div>
+        <div class="wv-val">90%</div>
+      </div>
+      <div class="wv-row">
+        <div class="wv-label">Mobile Ready</div>
+        <div class="wv-bar-wrap"><div class="wv-bar" style="width:100%"></div></div>
+        <div class="wv-val">100%</div>
+      </div>
+      <div class="wv-row">
+        <div class="wv-label">SEO Optimized</div>
+        <div class="wv-bar-wrap"><div class="wv-bar" style="width:88%"></div></div>
+        <div class="wv-val">88%</div>
+      </div>
+      <div class="wv-row">
+        <div class="wv-label">Value for Money</div>
+        <div class="wv-bar-wrap"><div class="wv-bar" style="width:98%"></div></div>
+        <div class="wv-val">98%</div>
+      </div>
+      <div style="margin-top:1.5rem;padding:1.2rem;background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:6px;text-align:center">
+        <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);line-height:1">100%</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.3rem;text-transform:uppercase;letter-spacing:.08em">Client satisfaction rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-tag reveal">How It Works</div>
+  <h2 class="reveal">From idea to <span class="a">live site</span><br>in under 2 weeks</h2>
+  <div class="process-steps reveal">
+    <div class="pstep">
+      <div class="pstep-num">01</div>
+      <h4>Free Chat</h4>
+      <p>We talk about your business, your goals, and what you need. No commitment — just a conversation.</p>
+    </div>
+    <div class="pstep">
+      <div class="pstep-num">02</div>
+      <h4>Design & Build</h4>
+      <p>I design and build your site based on what we discussed. You'll see a preview before anything goes live.</p>
+    </div>
+    <div class="pstep">
+      <div class="pstep-num">03</div>
+      <h4>You Review It</h4>
+      <p>Give feedback and request changes. We refine it together until you're completely happy with it.</p>
+    </div>
+    <div class="pstep">
+      <div class="pstep-num">04</div>
+      <h4>Go Live!</h4>
+      <p>Your site goes live. I help with domain and hosting setup so you're not left figuring it out alone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="cta-tag">Let's Work Together</div>
+  <h2>Ready to get a<br>website that works?</h2>
+  <p>Tell me about your business and what you need. I'll get back to you within 24 hours with a free quote — no pressure, no commitment.</p>
+  <div class="cta-actions">
+    <a href="mailto:sethsosack3@gmail.com" class="btn-primary">📩 Email Me a Quote Request</a>
+    <a href="tel:+17245615764" class="btn-secondary">📞 Call or Text Me</a>
+  </div>
+  <div class="cta-contact">Prefer to message? Reach me on <a href="#">Instagram</a> or <a href="#">Facebook</a>.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Web<span>Maker</span></div>
+  <div class="footer-copy">© 2026 WebMaker · Seth Sosack</div>
+  <div class="footer-links">
+    <a href="#portfolio">Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#cta">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if(el.isIntersecting){ el.target.classList.add('visible') }
+  });
+}, {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Animate bars when visible
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.wv-bar').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0%';
+        requestAnimationFrame(()=>{ setTimeout(()=>{ bar.style.width = w; }, 100) });
+      });
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.why-visual').forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>

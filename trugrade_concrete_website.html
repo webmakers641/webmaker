@@ -1,0 +1,402 @@
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blk:#0d0c0b;--drk:#1a1814;--gry:#2e2b26;--mid:#4a453d;--dst:#7a7168;--snd:#b8a98e;--crm:#f2ede6;--wht:#faf8f5;--org:#e07a30;--or2:#c96520;--ylw:#f0b429;--fh:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif}
+body{background:var(--blk);color:var(--crm);font-family:var(--fb);line-height:1.6;overflow-x:hidden;font-size:15px}
+a{text-decoration:none}
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&display=swap');
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;background:rgba(13,12,11,.97);border-bottom:1px solid rgba(224,122,48,.18)}
+.nlogo{display:flex;flex-direction:column;line-height:1}
+.nlogo .t1{font-family:var(--fh);font-weight:900;font-size:1.45rem;text-transform:uppercase;color:var(--wht)}
+.nlogo .t1 span{color:var(--org)}
+.nlogo .t2{font-size:.55rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--dst)}
+.nlinks{display:flex;gap:1.6rem;list-style:none}
+.nlinks a{font-family:var(--fh);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--snd);transition:color .2s}
+.nlinks a:hover{color:var(--org)}
+.ncta{background:var(--org)!important;color:var(--wht)!important;padding:.35rem 1rem;border-radius:3px}
+.ncta:hover{background:var(--or2)!important;color:var(--wht)!important}
+
+#hero{min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;position:relative;overflow:hidden}
+.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80') center/cover no-repeat}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(150deg,rgba(13,12,11,.1) 0%,rgba(13,12,11,.55) 40%,rgba(13,12,11,.95) 100%)}
+.hcon{position:relative;z-index:2;max-width:820px}
+.hey{font-family:var(--fh);font-weight:600;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--org);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem}
+.hey::before{content:'';display:block;width:32px;height:2px;background:var(--org)}
+h1{font-family:var(--fh);font-weight:900;font-size:clamp(2.8rem,7vw,5.5rem);line-height:.92;text-transform:uppercase;color:var(--wht);margin-bottom:.5em}
+h1 em{font-style:normal;color:var(--org)}
+.hdesc{font-size:1rem;font-weight:300;color:var(--snd);max-width:480px;margin-bottom:1.6rem}
+.htags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.htag{font-family:var(--fh);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--crm);border:1px solid rgba(184,169,142,.35);padding:.28rem .8rem;border-radius:2px}
+.hact{display:flex;flex-wrap:wrap;gap:.8rem}
+.bp{display:inline-flex;align-items:center;gap:.4rem;background:var(--org);color:var(--wht);font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.6rem;border-radius:3px;border:none;cursor:pointer;transition:background .2s,transform .2s}
+.bp:hover{background:var(--or2);transform:translateY(-2px)}
+.bo{display:inline-flex;align-items:center;gap:.4rem;border:2px solid rgba(184,169,142,.45);color:var(--crm);font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.6rem;border-radius:3px;cursor:pointer;transition:border-color .2s,color .2s,transform .2s;background:none}
+.bo:hover{border-color:var(--org);color:var(--org);transform:translateY(-2px)}
+.hstats{position:relative;z-index:2;display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(184,169,142,.18)}
+.snum{font-family:var(--fh);font-weight:900;font-size:2rem;color:var(--org);line-height:1}
+.slbl{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--dst);margin-top:.15rem}
+
+#services{padding:4rem 24px;background:var(--drk)}
+.sheader{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:end;margin-bottom:3rem}
+.slabel{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--org);display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
+.slabel::before{content:'';display:block;width:26px;height:2px;background:var(--org)}
+h2{font-family:var(--fh);font-weight:900;font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;line-height:1;color:var(--wht);margin-bottom:1rem}
+h2 span{color:var(--org)}
+.sbody{font-size:.95rem;font-weight:300;color:var(--snd);line-height:1.7;text-align:right}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px}
+.scard{background:var(--gry);padding:2rem 1.8rem;position:relative;overflow:hidden;transition:background .3s}
+.scard::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--org);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.scard:hover{background:#342f27} .scard:hover::before{transform:scaleX(1)}
+.sico{font-size:1.8rem;margin-bottom:1rem;display:block}
+.scard h3{font-family:var(--fh);font-weight:800;font-size:1.3rem;text-transform:uppercase;color:var(--wht);margin-bottom:.6rem}
+.scard p{font-size:.88rem;color:var(--dst);line-height:1.6}
+.sdet{margin-top:1rem;display:flex;flex-direction:column;gap:.28rem}
+.dit{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--snd);display:flex;align-items:center;gap:.4rem}
+.dit::before{content:'—';color:var(--org);font-weight:700}
+
+#why{padding:4rem 24px;background:var(--blk);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.wimg img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(.85) contrast(1.1)}
+.wbadge{position:absolute;bottom:-1rem;right:-1rem;background:var(--org);color:var(--wht);padding:1.2rem;text-align:center;min-width:110px}
+.wbig{font-family:var(--fh);font-size:2.2rem;font-weight:900;line-height:1;display:block}
+.wsml{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.wlist{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.witem{display:flex;gap:1rem}
+.wnum{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.08em;color:var(--org);flex-shrink:0;padding-top:.15rem}
+.witem h4{font-family:var(--fh);font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.04em;color:var(--wht);margin-bottom:.3rem}
+.witem p{font-size:.86rem;color:var(--dst);line-height:1.6}
+
+#gallery{padding:4rem 24px;background:var(--drk)}
+.gnote{font-size:.78rem;color:var(--mid);margin-top:.4rem;font-style:italic}
+.ggrid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:2rem}
+.gi{overflow:hidden;position:relative;background:var(--gry)}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s ease;filter:brightness(.88) saturate(.9)}
+.gi:hover img{transform:scale(1.06);filter:brightness(1) saturate(1.1)}
+.gi:nth-child(1){grid-column:span 7;grid-row:span 2;min-height:340px}
+.gi:nth-child(2){grid-column:span 5;min-height:165px}
+.gi:nth-child(3){grid-column:span 5;min-height:165px}
+.gi:nth-child(4){grid-column:span 4;min-height:210px}
+.gi:nth-child(5){grid-column:span 4;min-height:210px}
+.gi:nth-child(6){grid-column:span 4;min-height:210px}
+.gov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,12,11,.7) 0%,transparent 60%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1rem}
+.gi:hover .gov{opacity:1}
+.govl{font-family:var(--fh);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wht)}
+.gph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--gry);color:var(--mid);font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;gap:.4rem;text-align:center;padding:.8rem}
+.phi{font-size:1.6rem;opacity:.35}
+
+#process{padding:4rem 24px;background:var(--blk)}
+.psteps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3rem;position:relative}
+.psteps::before{content:'';position:absolute;top:1.8rem;left:0;right:0;height:1px;background:rgba(224,122,48,.22)}
+.pstep{padding:0 1.5rem 1.5rem 0;position:relative}
+.pdot{width:38px;height:38px;background:var(--org);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:900;font-size:.9rem;color:var(--wht);margin-bottom:1.2rem;position:relative;z-index:1}
+.pstep h4{font-family:var(--fh);font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.04em;color:var(--wht);margin-bottom:.5rem}
+.pstep p{font-size:.82rem;color:var(--dst);line-height:1.6}
+
+#testimonials{padding:4rem 24px;background:var(--drk)}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:2.5rem}
+.tcard{background:var(--gry);padding:1.8rem;position:relative}
+.tcard::before{content:'"';font-family:var(--fh);font-size:5rem;font-weight:900;color:var(--org);opacity:.14;position:absolute;top:-.4rem;left:.8rem;line-height:1}
+.stars{color:var(--ylw);font-size:.85rem;margin-bottom:.8rem;letter-spacing:.08em}
+.ttxt{font-size:.88rem;font-weight:300;color:var(--crm);line-height:1.7;margin-bottom:1.2rem;font-style:italic}
+.tau{font-family:var(--fh);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--snd)}
+.tloc{font-size:.7rem;color:var(--dst);margin-top:.15rem}
+
+#cta{background:var(--org);padding:3.5rem 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;position:relative;overflow:hidden}
+#cta::before{content:'truGRADE';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--fh);font-weight:900;font-size:9rem;color:rgba(255,255,255,.06);white-space:nowrap;line-height:1;pointer-events:none;text-transform:uppercase}
+.ctxt h2{color:var(--wht);font-size:clamp(1.6rem,3.5vw,2.4rem)}
+.ctxt p{color:rgba(255,255,255,.85);font-size:.95rem;font-weight:300;margin-top:.3rem}
+.cph{font-family:var(--fh);font-weight:900;font-size:clamp(1.5rem,3.5vw,2.4rem);color:var(--wht);text-decoration:none;white-space:nowrap}
+.cph:hover{text-decoration:underline}
+.bw{display:inline-flex;align-items:center;gap:.4rem;background:var(--wht);color:var(--org);font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.6rem;border-radius:3px;cursor:pointer;transition:background .2s,transform .2s;border:none}
+.bw:hover{background:var(--crm);transform:translateY(-2px)}
+.cacts{display:flex;flex-direction:column;gap:.8rem;align-items:flex-end}
+
+#contact{padding:4rem 24px;background:var(--blk)}
+.cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;margin-top:2.5rem}
+.cinfo{display:flex;flex-direction:column;gap:1.6rem}
+.citem{display:flex;gap:.9rem}
+.cion{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.citem h4{font-family:var(--fh);font-weight:700;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dst);margin-bottom:.25rem}
+.citem a,.citem span{font-size:.98rem;color:var(--crm);font-weight:500}
+.citem a:hover{color:var(--org)}
+.cform{display:flex;flex-direction:column;gap:.9rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--dst)}
+.fg input,.fg textarea,.fg select{background:var(--gry);border:1px solid rgba(184,169,142,.15);border-radius:3px;color:var(--crm);font-family:var(--fb);font-size:.88rem;padding:.65rem .9rem;outline:none;transition:border-color .2s;-webkit-appearance:none;width:100%}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--org)}
+.fg textarea{min-height:100px;resize:vertical}
+.fsucc{display:none;background:rgba(224,122,48,.12);border:1px solid var(--org);border-radius:3px;padding:.8rem 1rem;color:var(--org);font-family:var(--fh);font-weight:600;font-size:.85rem;letter-spacing:.04em}
+
+#astrip{background:var(--drk);padding:2rem 24px}
+.astrip h3{font-family:var(--fh);font-weight:800;font-size:1.1rem;text-transform:uppercase;color:var(--wht);margin-bottom:.5rem}
+.atags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.atag{font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dst);border:1px solid rgba(122,113,104,.3);padding:.25rem .6rem;border-radius:2px}
+
+footer{background:var(--drk);border-top:1px solid rgba(255,255,255,.06);padding:3rem 24px 1.5rem}
+.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+.fbl .flt{font-family:var(--fh);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--wht);line-height:1}
+.fbl .flt span{color:var(--org)}
+.fbl p{font-size:.82rem;color:var(--dst);margin-top:.6rem;line-height:1.6}
+.fbl .fph{display:block;margin-top:1rem;font-family:var(--fh);font-weight:700;font-size:1rem;color:var(--org)}
+.fbl .fph:hover{text-decoration:underline}
+.fcol h5{font-family:var(--fh);font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--snd);margin-bottom:.8rem}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.fcol ul a{font-size:.82rem;color:var(--dst);transition:color .2s}
+.fcol ul a:hover{color:var(--org)}
+.fbot{border-top:1px solid rgba(255,255,255,.06);padding-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+.fbot p{font-size:.75rem;color:var(--mid)}
+.fbot a{color:var(--mid)}
+.fbot a:hover{color:var(--org)}
+.fsoc{display:flex;gap:.8rem}
+.fsl{width:32px;height:32px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dst);font-size:.78rem;transition:border-color .2s,color .2s}
+.fsl:hover{border-color:var(--org);color:var(--org)}
+
+@media(max-width:700px){
+  #why{grid-template-columns:1fr}.wimg{display:none}
+  .sheader{grid-template-columns:1fr}.sbody{text-align:left}
+  .cgrid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}
+  .ftop{grid-template-columns:1fr 1fr}
+  .psteps{grid-template-columns:1fr 1fr}
+  .psteps::before{display:none}
+  .gi:nth-child(1){grid-column:span 12;min-height:220px}
+  .gi:nth-child(2){grid-column:span 6}.gi:nth-child(3){grid-column:span 6}
+  .gi:nth-child(4){grid-column:span 12}.gi:nth-child(5){grid-column:span 6}.gi:nth-child(6){grid-column:span 6}
+  #cta{flex-direction:column}.cacts{align-items:flex-start}
+  .nlinks{display:none}
+}
+@media(max-width:480px){
+  .ftop{grid-template-columns:1fr}
+  .hstats{gap:1.5rem;flex-wrap:wrap}
+  .gi:nth-child(n){grid-column:span 12;min-height:180px}
+}
+</style>
+
+<nav>
+  <a href="#hero" class="nlogo">
+    <span class="t1">tru<span>Grade</span></span>
+    <span class="t2">Concrete</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:7249704053" class="ncta">📞 Free Estimate</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hbg"></div>
+  <div class="hcon">
+    <div class="hey">Fayette County &amp; Surrounding Areas, PA</div>
+    <h1>Concrete<br/><em>Done Right.</em></h1>
+    <p class="hdesc">Precision work. Clean finishes. Built to last. truGrade delivers quality you can walk on, drive on, and be proud of for decades.</p>
+    <div class="htags">
+      <span class="htag">🔲 Stamped</span>
+      <span class="htag">🏡 Patios</span>
+      <span class="htag">🚗 Driveways</span>
+      <span class="htag">🚶 Sidewalks</span>
+    </div>
+    <div class="hact">
+      <a href="tel:7249704053" class="bp">📞 (724) 970-4053</a>
+      <a href="#services" class="bo">View Our Work ↓</a>
+    </div>
+  </div>
+  <div class="hstats">
+    <div><div class="snum">FREE</div><div class="slbl">Estimates</div></div>
+    <div><div class="snum">★ 5</div><div class="slbl">Star Rated</div></div>
+    <div><div class="snum">PA</div><div class="slbl">Licensed &amp; Insured</div></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sheader">
+    <div><div class="slabel">What We Do</div><h2>Our <span>Services</span></h2></div>
+    <p class="sbody">Every pour is handled with craftsmanship and precision — from the first form to the final sealed finish.</p>
+  </div>
+  <div class="sgrid">
+    <div class="scard">
+      <span class="sico">🔲</span>
+      <h3>Stamped Concrete</h3>
+      <p>Decorative masterpieces in dozens of patterns that replicate stone, brick, slate, and more at a fraction of the cost.</p>
+      <div class="sdet">
+        <span class="dit">Custom patterns &amp; textures</span>
+        <span class="dit">Integral &amp; surface color</span>
+        <span class="dit">Professional sealing</span>
+        <span class="dit">Pool surrounds &amp; walkways</span>
+      </div>
+    </div>
+    <div class="scard">
+      <span class="sico">🏡</span>
+      <h3>Patios</h3>
+      <p>Extend your living space outdoors with durable, beautiful concrete built for entertaining and lasting curb appeal.</p>
+      <div class="sdet">
+        <span class="dit">Standard &amp; decorative finishes</span>
+        <span class="dit">Custom shapes &amp; sizes</span>
+        <span class="dit">Built-in steps &amp; borders</span>
+        <span class="dit">Proper drainage grading</span>
+      </div>
+    </div>
+    <div class="scard">
+      <span class="sico">🚗</span>
+      <h3>Driveways</h3>
+      <p>Thick, reinforced driveways built to handle Pennsylvania winters and heavy traffic — built to outlast the alternatives.</p>
+      <div class="sdet">
+        <span class="dit">Rebar or fiber mesh reinforced</span>
+        <span class="dit">Proper subbase preparation</span>
+        <span class="dit">Correctly placed joints</span>
+        <span class="dit">Residential &amp; commercial</span>
+      </div>
+    </div>
+    <div class="scard">
+      <span class="sico">🚶</span>
+      <h3>Sidewalks &amp; Walkways</h3>
+      <p>Safe, level, and clean concrete that handles foot traffic year-round with minimal maintenance required.</p>
+      <div class="sdet">
+        <span class="dit">ADA compliant options</span>
+        <span class="dit">Broom &amp; exposed aggregate</span>
+        <span class="dit">Control joints prevent cracking</span>
+        <span class="dit">Repair &amp; replacement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wimg" style="position:relative">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Concrete work" loading="lazy"/>
+    <div class="wbadge"><span class="wbig">✓</span><span class="wsml">Locally Owned</span></div>
+  </div>
+  <div>
+    <div class="slabel">Why truGrade</div>
+    <h2>Precision. <span>Pride.</span> Performance.</h2>
+    <p style="font-size:.92rem;font-weight:300;color:var(--snd);line-height:1.7">We treat every project like it's our own property. No cutting corners. No surprises. Just honest work done right the first time.</p>
+    <div class="wlist">
+      <div class="witem"><span class="wnum">01</span><div><h4>Free, Detailed Estimates</h4><p>We visit your property, evaluate the scope, and deliver a clear written estimate — no hidden fees, no surprises.</p></div></div>
+      <div class="witem"><span class="wnum">02</span><div><h4>Proper Site Preparation</h4><p>A pour is only as good as what's underneath. We grade and compact the subbase correctly so your concrete lasts decades.</p></div></div>
+      <div class="witem"><span class="wnum">03</span><div><h4>Clean, Professional Finish</h4><p>We take pride in every edge, joint, and surface. Every job site is left clean and every pour finished to a pro standard.</p></div></div>
+      <div class="witem"><span class="wnum">04</span><div><h4>Local to Fayette County</h4><p>We live and work in the same communities we serve. Our reputation depends on every single job — we take that seriously.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="slabel">Portfolio</div>
+  <h2>Our <span>Work</span></h2>
+  <p class="gnote">📌 To add your Facebook photos: save them, host them (Google Photos, Imgur, etc.), and swap the placeholder slots below with your image URLs.</p>
+  <div class="ggrid">
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1565008576549-57569a49f73c?w=800&q=80" alt="Stamped patio" loading="lazy"/>
+      <div class="gov"><span class="govl">Stamped Patio</span></div>
+    </div>
+    <div class="gi" style="min-height:165px"><div class="gph"><span class="phi">📸</span><span>Your Project Photo</span><span style="font-size:.6rem;color:var(--mid)">Facebook photo 1</span></div></div>
+    <div class="gi" style="min-height:165px"><div class="gph"><span class="phi">📸</span><span>Your Project Photo</span><span style="font-size:.6rem;color:var(--mid)">Facebook photo 2</span></div></div>
+    <div class="gi" style="min-height:210px"><div class="gph"><span class="phi">📸</span><span>Your Project Photo</span><span style="font-size:.6rem;color:var(--mid)">Facebook photo 3</span></div></div>
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1590650625272-46a8be7a81be?w=600&q=80" alt="Concrete driveway" loading="lazy"/>
+      <div class="gov"><span class="govl">Driveway</span></div>
+    </div>
+    <div class="gi">
+      <img src="https://images.unsplash.com/photo-1590650045892-2e7d0aa5d79b?w=600&q=80" alt="Sidewalk" loading="lazy"/>
+      <div class="gov"><span class="govl">Sidewalk</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="slabel">How It Works</div>
+  <h2>Simple <span>Process.</span> Exceptional Results.</h2>
+  <div class="psteps">
+    <div class="pstep"><div class="pdot">1</div><h4>Free Estimate</h4><p>Call or text. We visit, measure your project, and deliver a clear written estimate with no obligation.</p></div>
+    <div class="pstep"><div class="pdot">2</div><h4>Site Prep</h4><p>We excavate, grade, and compact the subbase for proper drainage and long-term stability before any concrete is poured.</p></div>
+    <div class="pstep"><div class="pdot">3</div><h4>Pour &amp; Finish</h4><p>We form, pour, and finish with precision — placing control joints and applying the surface treatment you chose.</p></div>
+    <div class="pstep"><div class="pdot">4</div><h4>Cure &amp; Seal</h4><p>Proper curing is critical. We apply curing compounds and seal decorative surfaces for maximum durability and beauty.</p></div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="slabel">What Clients Say</div>
+  <h2>Real <span>Reviews</span></h2>
+  <div class="tgrid">
+    <div class="tcard"><div class="stars">★★★★★</div><p class="ttxt">They did our entire driveway and a stamped patio out back. Absolutely beautiful work. Showed up on time, cleaned up after, and the price was very fair. Couldn't ask for more.</p><div class="tau">Mike T.</div><div class="tloc">Uniontown, PA</div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="ttxt">truGrade replaced our crumbling sidewalk and added a patio by the back door. Super professional, great attention to detail, and done faster than expected. Highly recommend!</p><div class="tau">Donna R.</div><div class="tloc">Connellsville, PA</div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="ttxt">Got three quotes for our driveway. truGrade explained exactly what they'd do and why — and the finished product is outstanding. Worth every single penny.</p><div class="tau">James K.</div><div class="tloc">Masontown, PA</div></div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="ctxt"><h2>Ready to Get Started?</h2><p>Free estimates — no pressure, no obligation. A straight answer and a fair price.</p></div>
+  <div class="cacts">
+    <a href="tel:7249704053" class="cph">(724) 970-4053</a>
+    <a href="tel:7249704053" class="bw">📞 Call Now — It's Free</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="slabel">Get In Touch</div>
+  <h2>Request a <span>Free Estimate</span></h2>
+  <div class="cgrid">
+    <div class="cinfo">
+      <div class="citem"><span class="cion">📞</span><div><h4>Phone</h4><a href="tel:7249704053">(724) 970-4053</a></div></div>
+      <div class="citem"><span class="cion">📍</span><div><h4>Service Area</h4><span>Fayette County &amp; Surrounding Areas, PA</span></div></div>
+      <div class="citem"><span class="cion">🕐</span><div><h4>Hours</h4><span>Mon–Sat: 7:00 AM – 6:00 PM</span></div></div>
+      <div class="citem"><span class="cion">💬</span><div><h4>Facebook</h4><a href="https://www.facebook.com" target="_blank">Follow us on Facebook</a></div></div>
+    </div>
+    <form class="cform" onsubmit="sub(event)">
+      <div class="frow">
+        <div class="fg"><label>First Name</label><input type="text" placeholder="John" required/></div>
+        <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required/></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Phone</label><input type="tel" placeholder="(724) 000-0000" required/></div>
+        <div class="fg"><label>Email (optional)</label><input type="email" placeholder="you@example.com"/></div>
+      </div>
+      <div class="fg">
+        <label>Service Needed</label>
+        <select><option value="">Select a service...</option><option>Stamped Concrete</option><option>Patio</option><option>Driveway</option><option>Sidewalk / Walkway</option><option>Other / Not Sure</option></select>
+      </div>
+      <div class="fg"><label>Tell Us About Your Project</label><textarea placeholder="Describe your project — size, location, any special requirements..."></textarea></div>
+      <button type="submit" class="bp" style="align-self:flex-start" id="sbtn">Send Request →</button>
+      <div class="fsucc" id="fsucc">✓ Thanks! We'll be in touch within 1 business day.</div>
+    </form>
+  </div>
+</section>
+
+<div id="astrip">
+  <h3>📍 Areas We Serve</h3>
+  <div class="atags">
+    <span class="atag">Uniontown</span><span class="atag">Connellsville</span><span class="atag">Masontown</span><span class="atag">Brownsville</span><span class="atag">Fairchance</span><span class="atag">Perryopolis</span><span class="atag">Smithfield</span><span class="atag">Belle Vernon</span><span class="atag">Lemont Furnace</span><span class="atag">Fayette County</span><span class="atag">+ Surrounding Areas</span>
+  </div>
+</div>
+
+<footer>
+  <div class="ftop">
+    <div class="fbl">
+      <div class="flt">tru<span>Grade</span> Concrete</div>
+      <p>Precision work. Clean finishes. Built to last. Proudly serving Fayette County and surrounding communities in southwestern Pennsylvania.</p>
+      <a href="tel:7249704053" class="fph">(724) 970-4053</a>
+    </div>
+    <div class="fcol"><h5>Services</h5><ul><li><a href="#services">Stamped Concrete</a></li><li><a href="#services">Patios</a></li><li><a href="#services">Driveways</a></li><li><a href="#services">Sidewalks</a></li></ul></div>
+    <div class="fcol"><h5>Company</h5><ul><li><a href="#why">About Us</a></li><li><a href="#gallery">Portfolio</a></li><li><a href="#process">Our Process</a></li><li><a href="#testimonials">Reviews</a></li></ul></div>
+    <div class="fcol"><h5>Contact</h5><ul><li><a href="tel:7249704053">(724) 970-4053</a></li><li><a href="#contact">Free Estimate</a></li><li><a href="https://www.facebook.com" target="_blank">Facebook</a></li><li><a href="#astrip">Service Area</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <p>© 2025 truGrade Concrete. All rights reserved. | Fayette County, PA</p>
+    <div class="fsoc"><a href="https://www.facebook.com" target="_blank" class="fsl">f</a></div>
+  </div>
+</footer>
+
+<script>
+function sub(e){
+  e.preventDefault();
+  var b=document.getElementById('sbtn');
+  b.textContent='Sending…'; b.disabled=true;
+  setTimeout(function(){
+    document.getElementById('fsucc').style.display='block';
+    b.style.display='none';
+    e.target.reset();
+  },900);
+}
+</script>
